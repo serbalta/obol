@@ -1,0 +1,110 @@
+#Bu kisimi sadece takimdan 1 kisi yapmasi gerekli. Kimin serveri daha güclüyse ve hafizasi yüksekse o kisi yapabilir.
+#Öncelikle nodeun oldugu klasörün icine girmeniz gerekli
+cd charon-distributed-validator-node
+docker-compose down
+#Daha sonra burada bootnode klasörü olmali yoksa
+git pull yazarak update yapabilirsiniz.
+#Zaten bootnode klasörünüz varsa
+cd bootnode
+nano docker-compose.yml 
+#yazip asagidaki gibi degistirebilirsiniz. Degistirmek icin winscp´de bootnode klasörünün icerisindeki docker-compose.yml dosyasini acip ordan da degistirebilirsiniz.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+version: "3.8"
+
+services:
+  #  _                 _                   _
+  # | |__   ___   ___ | |_ _ __   ___   __| | ___
+  # | '_ \ / _ \ / _ \| __| '_ \ / _ \ / _` |/ _ \
+  # | |_) | (_) | (_) | |_| | | | (_) | (_| |  __/
+  # |_.__/ \___/ \___/ \__|_| |_|\___/ \__,_|\___|
+  bootnode:
+    # Pegged charon version (update this for each release).
+    image: obolnetwork/charon:14ce3bf
+    environment:
+      CHARON_P2P_TCP_ADDRESS: 0.0.0.0:3660
+      CHARON_P2P_UDP_ADDRESS: 0.0.0.0:3650             #Buradaki ve asagidaki portlari degistirmeyi unutmayin DIKKAT 
+      CHARON_BOOTNODE_HTTP_ADDRESS: 0.0.0.0:3645
+      CHARON_LOG_LEVEL: debug
+      CHARON_P2P_EXTERNAL_HOSTNAME: kendi ip adresiniz
+      
+    ports:
+      - 3660:3660/tcp
+      - 3650:3650/udp																#2.Uyari buradaki ve yukaridaki portlari degistirmeyi unutmayin DIKKAT
+      - 3645:3645/tcp																#Bu portlardan birisini herhangi bir sebepten kullaniyorsaniz kullanmadiginiz farkli portlari yazin
+    command: bootnode
+    volumes:
+      - .charon:/opt/charon/.charon # Bootnode charon-enr-private-key generated and persisted across restarts in this folder
+    restart: on-failure
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		#Daha sonra degistirdigimiz portlari aktif edelim 
+		ufw allow 3660
+		ufw allow 3650
+		ufw allow 3645
+	
+		#Kaydedip kapattiktan sonra bootnode klasöründen cikmadan
+		docker-compose up -d #yaziyoruz ve asagidaki gibi bir dönüsü olcak 
+		
+		##Creating network "bootnode_default" with the default driver
+		##Creating bootnode_bootnode_1 ... done
+	
+		#Bu islemleri yapan kisi
+		cd .. 
+		#yazarak charon-distributed-validator-node klasörüne geri dönecek
+		
+		#basarili olup olmadiginizi görebilmek icin 
+		curl http://Bu islemleri yapan kisinin IPadresi:3645/enr
+		#Curl kodu yazildiginda size ENR adresi cikariyorsa islemleriniz basarilidir
+		
+		#Burdan sonrasini bütün takimin yapmasi gerekli
+		------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		#Herkes charon-distributed-validator-node klasörünün icinde olduguna emin olsun. Yukaridaki islemleri yapan arkadas satir satir gittiyse zaten ordadir. 
+		#Klasöre girmk icin asagidaki kodu girelim.
+		cd charon-distributed-validator-node 
+		docker-compose down yazarak dockeri durduralim
+		nano docker-compose.yml 
+		#kodunu veya winscp yi kullanarak docker-compose.yml dosyasini acalim ve asagidaki kodu "Yukaridaki islemleri yapanin IPadresi" kismini 
+		#degistirdikten sonra asagida gösterdigim charon kismina ekleyin 
+		
+		CHARON_P2P_BOOTNODES: http://Yukaridaki islemleri yapanin IPadresi:3640/enr
+		
+		##Örnek:
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------
+		#       _
+  #   ___| |__   __ _ _ __ ___  _ __
+  #  / __| '_ \ / _` | '__/ _ \| '_ \
+  # | (__| | | | (_| | | | (_) | | | |
+  #  \___|_| |_|\__,_|_|  \___/|_| |_|
+
+  charon:
+    # Pegged charon version (update this for each release).
+    # image: obolnetwork/charon:${CHARON_VERSION}
+    image: ghcr.io/obolnetwork/charon:152ba99
+    depends_on:
+      - lighthouse
+    environment:
+      CHARON_BEACON_NODE_ENDPOINTS: http://lighthouse:5052
+      CHARON_JAEGER_ADDRESS: jaeger:6831
+      CHARON_VALIDATOR_API_ADDRESS: 0.0.0.0:3600
+      CHARON_P2P_TCP_ADDRESS: 0.0.0.0:3610
+      CHARON_MONITORING_ADDRESS: 0.0.0.0:3620
+      CHARON_P2P_UDP_ADDRESS: 0.0.0.0:3630
+      CHARON_P2P_BOOTNODE_RELAY: "true"
+      CHARON_LOG_LEVEL: info
+      CHARON_JAEGER_SERVICE: charon
+      CHARON_P2P_EXTERNAL_HOSTNAME: charon
+      CHARON_P2P_BOOTNODES: http://youbootnodeip:3640/enr
+			CHARON_P2P_BOOTNODES: http://Yukaridaki islemleri yapanin IPadresi:3640/enr
+			
+			----------------------------------------------------------------------------------------------------------------------------------------------------------------
+			#kaydedip kapattiktan sonra
+			docker compose up -d 
+      #yazarak dockeri tekrar aktif edelim. Herseyi adim adim dogru yaptiysaniz bir süre bekledikten sonra bütün nodelariniz aktif olacaktir.
+			#loglarinizi görmek icin 
+			docker-compose logs -f --tail 10 #yaza bilirsiniz
+			
+			Kolay Gelsin 
+		
+		
