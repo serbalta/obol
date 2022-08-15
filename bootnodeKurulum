@@ -31,8 +31,8 @@ services:
       
     ports:
       - 3660:3660/tcp
-      - 3650:3650/udp																#2.Uyari buradaki ve yukaridaki portlari degistirmeyi unutmayin DIKKAT
-      - 3645:3645/tcp																#Bu portlardan birisini herhangi bir sebepten kullaniyorsaniz kullanmadiginiz farkli portlari yazin
+      - 3650:3650/udp				#2.Uyari buradaki ve yukaridaki portlari degistirmeyi unutmayin DIKKAT
+      - 3645:3645/tcp				#Bu portlardan birisini herhangi bir sebepten kullaniyorsaniz kullanmadiginiz farkli portlari yazin
     command: bootnode
     volumes:
       - .charon:/opt/charon/.charon # Bootnode charon-enr-private-key generated and persisted across restarts in this folder
@@ -96,7 +96,7 @@ services:
       CHARON_JAEGER_SERVICE: charon
       CHARON_P2P_EXTERNAL_HOSTNAME: charon
       CHARON_P2P_BOOTNODES: http://youbootnodeip:3640/enr
-      CHARON_P2P_BOOTNODES: http://Yukaridaki islemleri yapanin IPadresi:3640/enr
+      CHARON_P2P_BOOTNODES: http://Yukaridaki islemleri yapanin IPadresi:3640/enr    ####EKLENEN TEK SATIRLIK KOD
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 #kaydedip kapattiktan sonra
 docker compose up -d 
