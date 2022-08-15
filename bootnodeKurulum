@@ -96,15 +96,14 @@ services:
       CHARON_JAEGER_SERVICE: charon
       CHARON_P2P_EXTERNAL_HOSTNAME: charon
       CHARON_P2P_BOOTNODES: http://youbootnodeip:3640/enr
-			CHARON_P2P_BOOTNODES: http://Yukaridaki islemleri yapanin IPadresi:3640/enr
+      CHARON_P2P_BOOTNODES: http://Yukaridaki islemleri yapanin IPadresi:3640/enr
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#kaydedip kapattiktan sonra
+docker compose up -d 
+#yazarak dockeri tekrar aktif edelim. Herseyi adim adim dogru yaptiysaniz bir süre bekledikten sonra bütün nodelariniz aktif olacaktir.
+#loglarinizi görmek icin 
+docker-compose logs -f --tail 10 #yaza bilirsiniz
 			
-			----------------------------------------------------------------------------------------------------------------------------------------------------------------
-			#kaydedip kapattiktan sonra
-			docker compose up -d 
-      #yazarak dockeri tekrar aktif edelim. Herseyi adim adim dogru yaptiysaniz bir süre bekledikten sonra bütün nodelariniz aktif olacaktir.
-			#loglarinizi görmek icin 
-			docker-compose logs -f --tail 10 #yaza bilirsiniz
-			
-			Kolay Gelsin 
+Kolay Gelsin 
 		
 		
