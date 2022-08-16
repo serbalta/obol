@@ -95,7 +95,6 @@ services:
       CHARON_LOG_LEVEL: info
       CHARON_JAEGER_SERVICE: charon
       CHARON_P2P_EXTERNAL_HOSTNAME: charon
-      CHARON_P2P_BOOTNODES: http://youbootnodeip:3640/enr
       CHARON_P2P_BOOTNODES: http://Yukaridaki islemleri yapanin IPadresi:3640/enr    ####EKLENEN TEK SATIRLIK KOD
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 #kaydedip kapattiktan sonra
