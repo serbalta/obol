@@ -100,9 +100,9 @@ services:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 #kaydedip kapattiktan sonra
 docker compose up -d 
-#yazarak dockeri tekrar aktif edelim. Herseyi adim adim dogru yaptiysaniz bir süre bekledikten sonra bütün nodelariniz aktif olacaktir.
+#yazarak dockeri tekrar aktif edelim.Her seyi adim adim dogru yaptiysaniz bir süre bekledikten sonra bütün nodelariniz aktif olacaktir.
 #loglarinizi görmek icin 
-docker-compose logs -f --tail 10 #yaza bilirsiniz
+docker-compose logs -f --tail 10 #yazabilirsiniz
 			
 Kolay Gelsin 
 		
