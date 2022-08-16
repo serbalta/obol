@@ -45,7 +45,8 @@ services:
 		ufw allow 3645
 	
 		#Kaydedip kapattiktan sonra bootnode klasöründen cikmadan
-		docker-compose up -d #yaziyoruz ve asagidaki gibi bir dönüsü olcak 
+		docker-compose up -d #yaziyoruz ve asagidaki gibi bir dönüsü olcak eger PERMISSION DENIED hatasi alirsaniz "chmod 777 -R bootnode" yapabilirsiniz.
+		
 		
 		##Creating network "bootnode_default" with the default driver
 		##Creating bootnode_bootnode_1 ... done
