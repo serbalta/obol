@@ -69,7 +69,7 @@ services:
 		#kodunu veya winscp yi kullanarak docker-compose.yml dosyasini acalim ve asagidaki kodu "Yukaridaki islemleri yapanin IPadresi" kismini 
 		#degistirdikten sonra asagida gösterdigim charon kismina ekleyin 
 		
-		CHARON_P2P_BOOTNODES: http://Yukaridaki islemleri yapanin IPadresi:3640/enr
+		CHARON_P2P_BOOTNODES: http://Yukaridaki islemleri yapanin IPadresi:3645/enr
 		
 		##Örnek:
 		--------------------------------------------------------------------------------------------------------------------------------------------------------------
