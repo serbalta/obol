@@ -99,7 +99,7 @@ services:
       CHARON_P2P_BOOTNODES: http://Yukaridaki islemleri yapanin IPadresi:3645/enr   ####EKLENEN TEK SATIRLIK KOD
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 #kaydedip kapattiktan sonra
-docker compose up -d 
+docker-compose up -d 
 #yazarak dockeri tekrar aktif edelim.Her seyi adim adim dogru yaptiysaniz bir süre bekledikten sonra bütün nodelariniz aktif olacaktir.
 #loglarinizi görmek icin 
 docker-compose logs -f --tail 10 #yazabilirsiniz
