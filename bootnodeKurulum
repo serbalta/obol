@@ -1,3 +1,6 @@
+
+#Her seyden önce baska bir VM olusturmak en mantiklisi mesela 5 dolarlik kücük bir VM icerisine charon-distributed-validator-node cekip bootnodeu burda 
+hicbir ayar degistirmeden calistirabilirsiniz. Baska VM kurmak istemiyorsaniz asagidaki adimlari takip edebilirsiniz.
 #Bu kisimi sadece takimdan 1 kisi yapmasi gerekli. Kimin serveri daha güclüyse ve hafizasi yüksekse o kisi yapabilir.
 #Öncelikle nodeun oldugu klasörün icine girmeniz gerekli
 cd charon-distributed-validator-node
